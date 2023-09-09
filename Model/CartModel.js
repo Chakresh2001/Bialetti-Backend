@@ -10,6 +10,7 @@ const CartSchema = mongoose.Schema({
     color: { type: String, },
     name: { type: String, },
     price: { type: Number, },
+    quantity : {type:Number},
     userId : {type : String}
     
 }, {versionKey:false})
