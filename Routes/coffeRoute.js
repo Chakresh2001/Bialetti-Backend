@@ -55,7 +55,7 @@ coffeRoute.get("/:id", async(req,res)=>{
   
       const {id} = req.params
   
-      const coffee = await CoffeeModel.findById(id)
+      const coffee = await CoffeeModel.find({id:id})
   
       res.json({coffee:coffee})
       
