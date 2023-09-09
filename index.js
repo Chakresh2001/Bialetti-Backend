@@ -4,6 +4,7 @@ const coffeRoute = require('./Routes/coffeRoute');
 const cors = require("cors");
 const userRoute = require('./Routes/userRoute');
 const cartRoute = require('./Routes/cartRoute');
+const wishListRoute = require('./Routes/wishListRoute');
 
 const app = express()
 
@@ -16,6 +17,8 @@ app.use("/coffee",coffeRoute)
 app.use("/user", userRoute)
 
 app.use("/cart", cartRoute)
+
+app.use('/wish', wishListRoute)
 
 
 app.listen(8080, connectToServer(), ()=>{
