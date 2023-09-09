@@ -10,7 +10,7 @@ cartRoute.post("/add", userAuth, async(req, res)=>{
         try {
 
         const {userID, userName, userEmail} = req.userInfo
-        const {image,image2,category,description,color,name,price} = req.body
+        const {image,image2,category,description,color,name,price,quantity} = req.body
 
 
 
@@ -22,6 +22,7 @@ cartRoute.post("/add", userAuth, async(req, res)=>{
             color: color,
             name: name,
             price: price,
+            quantity:quantity,
             userId : userID
         }
         const ItemAdded = CartModel(obj)
@@ -42,6 +43,20 @@ cartRoute.get("/", userAuth, async(req,res)=>{
         const {userID, userName, userEmail} = req.userInfo
 
         let cartItem = await CartModel.find({userId:userID})
+
+        res.status(200).json({message:cartItem})
+        
+    } catch (error) {
+        res.status(500).json({error:"Internal Server Error"})
+    }
+})
+
+// admin use
+cartRoute.get("/all", async(req,res)=>{
+    try {
+
+        
+        let cartItem = await CartModel.find()
 
         res.status(200).json({message:cartItem})
         
