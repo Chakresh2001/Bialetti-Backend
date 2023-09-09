@@ -3,6 +3,7 @@ const connectToServer = require('./Config/db');
 const coffeRoute = require('./Routes/coffeRoute');
 const cors = require("cors");
 const userRoute = require('./Routes/userRoute');
+const cartRoute = require('./Routes/cartRoute');
 
 const app = express()
 
@@ -13,6 +14,8 @@ app.use(express.json())
 app.use("/coffee",coffeRoute)
 
 app.use("/user", userRoute)
+
+app.use("/cart", cartRoute)
 
 
 app.listen(8080, connectToServer(), ()=>{
