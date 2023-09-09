@@ -9,13 +9,10 @@ cartRoute.post("/add", userAuth, async(req, res)=>{
 
         try {
 
-        const {userID, userName, userEmail} = req.body.userID
+        const {userID, userName, userEmail} = req.userInfo
         const {image,image2,category,description,color,name,price} = req.body
 
-        const exsistItem = await CartModel.find({userId:userID}).then((res)=>{
-            res[0].name = req.body.name
-            return res.status(500).json({error: "item Already in cart"})
-        })
+
 
         let obj = {
             image: image,
@@ -27,12 +24,42 @@ cartRoute.post("/add", userAuth, async(req, res)=>{
             price: price,
             userId : userID
         }
-        
         const ItemAdded = CartModel(obj)
         ItemAdded.save()
 
 
         res.status(200).json({message:"Item Added Successfully"})
+        
+    } catch (error) {
+        res.status(500).json({error:"Internal Server Error"})
+    }
+})
+
+
+cartRoute.get("/", userAuth, async(req,res)=>{
+    try {
+
+        const {userID, userName, userEmail} = req.userInfo
+
+        let cartItem = await CartModel.find({userId:userID})
+
+        res.status(200).json({message:cartItem})
+        
+    } catch (error) {
+        res.status(500).json({error:"Internal Server Error"})
+    }
+})
+
+cartRoute.delete("/:id", userAuth , async(req,res)=>{
+    try {
+
+        const {userID, userName, userEmail} = req.userInfo
+        const {id} = req.params
+
+        await CartModel.findByIdAndDelete(id)
+        res.status(200).json({message:"Item Deleted Successfully"})
+        
+
         
     } catch (error) {
         res.status(500).json({error:"Internal Server Error"})

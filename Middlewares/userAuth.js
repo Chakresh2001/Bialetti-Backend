@@ -8,10 +8,7 @@ const userAuth=(req,res,next)=>{
         const decoded=jwt.verify(token,"1234");
 
         if (decoded){
-            console.log(decoded)
-            req.body.userID=decoded.userID;
-            req.body.userName=decoded.userName;
-            req.body.user_Email=decoded.userEmail
+          req.userInfo = decoded
 
             next()
         }else{
