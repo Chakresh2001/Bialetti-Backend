@@ -31,6 +31,20 @@ addressRoute.post("/add", userAuth, async(req,res)=>{
     }
 })
 
+addressRoute.get("/", userAuth, async(req,res)=>{
+    try {
+
+        const {userID, userName, userEmail} = req.userInfo
+
+        let address = await AddressModel.find({userId:userID})
+
+        res.status(200).json({message:address})
+        
+    } catch (error) {
+        res.status(500).json({error:"Internal Server Error"})
+    }
+})
+
 addressRoute.delete("/:id",  async(req,res)=>{
     try {
 
