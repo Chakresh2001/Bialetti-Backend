@@ -21,7 +21,7 @@ app.use("/cart", cartRoute)
 
 app.use('/wish', wishListRoute)
 
-app.use("address", addressRoute)
+app.use("/address", addressRoute)
 
 
 app.listen(8080, connectToServer(), ()=>{
