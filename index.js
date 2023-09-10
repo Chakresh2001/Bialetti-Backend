@@ -5,6 +5,7 @@ const cors = require("cors");
 const userRoute = require('./Routes/userRoute');
 const cartRoute = require('./Routes/cartRoute');
 const wishListRoute = require('./Routes/wishListRoute');
+const addressRoute = require('./Routes/addressRoute');
 
 const app = express()
 
@@ -19,6 +20,8 @@ app.use("/user", userRoute)
 app.use("/cart", cartRoute)
 
 app.use('/wish', wishListRoute)
+
+app.use("address", addressRoute)
 
 
 app.listen(8080, connectToServer(), ()=>{
