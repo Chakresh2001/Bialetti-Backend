@@ -5,10 +5,10 @@ const AddressSchema = mongoose.Schema({
 
     HouseNo:{type:String},
     TowerNo:{type:String},
-    BuildingNo:{type:String},
+    Building:{type:String},
     Address:{type:String},
     Landmark:{type:String},
-    PhoneNo:{type:String},  
+    phoneNo:{type:String},  
     userId:{type:String},
     
 }, {versionKey:false})
